@@ -34,7 +34,7 @@ namespace WebAPI_Examples.Controllers
             })
             .ToArray();
 
-            return Ok();
+            return Ok(teste);
         }
     }
 }
