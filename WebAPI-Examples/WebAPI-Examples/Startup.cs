@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebAPI_Examples.Config.Interceptadores;
 
 namespace WebAPI_Examples
 {
@@ -34,7 +33,7 @@ namespace WebAPI_Examples
 
             app.UseAuthorization();
 
-            app.UseMiddleware<InterceptadorResponse>();
+            //app.UseMiddleware<InterceptadorResponse>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
