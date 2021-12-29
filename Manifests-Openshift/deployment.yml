@@ -1,0 +1,28 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: deployment-apihandson
+  labels:
+    app.project.name: apihandson
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apihandson
+  template:
+    metadata:
+      labels:
+        app: apihandson 
+    spec:
+      containers:
+        - name: apihandson 
+          image: cesaragsilva/api-pratica-modelo:v4
+          ports:
+            - containerPort: 5000
+          env:
+            - name: "ASPNETCORE_ENVIRONMENT"
+              value: "Development"
+          # envFrom:
+          #   - configMapRef:
+          #       name: conexao-rabbit
+          #       optional: true              
