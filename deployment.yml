@@ -1,0 +1,54 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: deployment-apihandson
+  labels:
+    app.project.name: apihandson
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apihandson
+  template:
+    metadata:
+      labels:
+        app: apihandson 
+    spec:
+      containers:
+        - name: apihandson 
+          image: cesaragsilva/handson-k8s
+          ports:
+            - containerPort: 5000
+          env:
+            - name: "ASPNETCORE_ENVIRONMENT"
+              # value: "Development"
+              valueFrom:
+                secretKeyRef:
+                  name: secret-handson
+                  key: ambiente
+          resources:
+            limits:
+              cpu: 100m
+            requests:
+              cpu: 50m
+          envFrom:
+            - configMapRef:
+                name: hands-on-ConfigMap
+          readinessProbe:
+            httpGet:
+              path: /hc
+              port: 5000
+              scheme: HTTP
+            timeoutSeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /hc
+              port: 5000
+              scheme: HTTP
+            timeoutSeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            failureThreshold: 3             

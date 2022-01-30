@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-hands-k8s
+  labels:
+    app.project.name: api-hands-k8s
+spec:
+  containers:
+    - name: hands-k8s
+      image: cesaragsilva/handson-k8s
+      ports:
+        - containerPort: 5000
