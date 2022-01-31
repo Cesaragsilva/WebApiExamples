@@ -9,4 +9,4 @@ spec:
     name: deployment-apihandson
   minReplicas: 1
   maxReplicas: 4
-  targetCPUUtilizationPercentage: 20
+  targetCPUUtilizationPercentage: 5
